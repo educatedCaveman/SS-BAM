@@ -9,24 +9,3 @@ The purpose of this repository is to store all the data files, writeups and code
 
 The general plan for testing this is to obtain a variety of bands and ammo, and measure the resulting shot speed. By measuring the forces, masses, and velocities involved, I should be able to extrapolate the kinetic energy of the shots, the potential energy of the bands before the shots, and possibly determine the energy efficiency of the various combinations. I also intend to create graphs/plots of the resulting data in order better digest the results.
 
-# Abstract
-
-
-# Introduction
-- Why did you do this research?
-- What was the original hypothesis?
-
-# Materials & Methods
-
-- When, where, and how did you do this research?
-- What materials or subjects were involved?
-
-# Results 
-  What did you discover?
-  Was the tested hypothesis true?
-
-# Discussion
-
-  What do your results mean?
-  How does this fit within the field?
-  What are the future prospectives?
