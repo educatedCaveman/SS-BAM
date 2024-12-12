@@ -51,7 +51,7 @@ for df in band_df:
 # set up the plot
 plt.style.use('bmh')
 fig, ax = plt.subplots()
-ax.set_title('Median Pellet Mass vs. Median Velocity')
+ax.set_title('Median Pellet Mass vs. Median Efficiency')
 
 # create each of the band's plots
 labels = ['Band A', 'Band B', 'Band C', 'Band D', 'Band E', 'Band F']
@@ -85,4 +85,5 @@ plt.grid(visible=True, which='minor', axis='both', alpha=0.3)
 ax.legend(loc='lower right')
 
 # final plot
-plt.show()
+# plt.show()
+plt.savefig('median_mass_vs_efficiency.svg', format='svg')
