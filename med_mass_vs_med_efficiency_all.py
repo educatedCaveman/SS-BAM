@@ -22,40 +22,42 @@ dtypes = {
     'calc_KE':              'float',  #14
     'calc_efficiency':      'float',  #15
 }
-df = pd.read_csv('data_with_calcs.csv', dtype=dtypes)
+input_df = pd.read_csv('data_with_calcs.csv', dtype=dtypes)
+# display(input_df)
 
-unused_cols = [
-    'band_type', 'pellet_type', 'trial_num', 'calc_mass_g', 'velocity_mps', 
-    'draw_length_m', 'draw_length_m', 'slack_length_m', 'draw_weight_kg', 
-    'calc_draw_force_N', 'note', 'calc_momentum', 'calc_power_stroke_m', 
-    'calc_PE', 'calc_KE', 
-]
+# split into different bands
+df_A = input_df.loc[input_df['band_type'] == 'band_A']
+df_B = input_df.loc[input_df['band_type'] == 'band_B']
+df_C = input_df.loc[input_df['band_type'] == 'band_C']
+df_D = input_df.loc[input_df['band_type'] == 'band_D']
+df_E = input_df.loc[input_df['band_type'] == 'band_E']
+df_F = input_df.loc[input_df['band_type'] == 'band_F']
 
-df_A = df.loc[df['band_type'] == 'band_A'].drop(labels=unused_cols, axis=1)
-df_B = df.loc[df['band_type'] == 'band_B'].drop(labels=unused_cols, axis=1)
-df_C = df.loc[df['band_type'] == 'band_C'].drop(labels=unused_cols, axis=1)
-df_D = df.loc[df['band_type'] == 'band_D'].drop(labels=unused_cols, axis=1)
-df_E = df.loc[df['band_type'] == 'band_E'].drop(labels=unused_cols, axis=1)
-df_F = df.loc[df['band_type'] == 'band_F'].drop(labels=unused_cols, axis=1)
-
+# aggregate the dataframes and collect the data into a plottable form
 band_df = [df_A, df_B, df_C, df_D, df_E, df_F]
-mass = []
-efficiency = []
+mass_med = []
+efficiency_med = []
 
-for df in band_df: 
-    np_df = df.to_numpy()    
-    mass.append(np_df[:, 0])
-    efficiency.append(np_df[:, 1])  
+for df in band_df:
+    df_med = df.groupby('pellet_type').agg(
+        mass_gn=pd.NamedAgg(column='mass_gn', aggfunc="median"),
+        calc_efficiency=pd.NamedAgg(column='calc_efficiency', aggfunc="median"),
+    )    
+    df_med.sort_values(by='mass_gn', inplace=True)    
+    np_med = df_med.to_numpy()
+    mass_med.append(np_med[:, 0])
+    efficiency_med.append(np_med[:, 1])       
 
 # set up the plot
 plt.style.use('bmh')
 fig, ax = plt.subplots()
-ax.set_title('Pellet Mass vs. Velocity')
+ax.set_title('Median Pellet Mass vs. Median Velocity')
 
 # create each of the band's plots
 labels = ['Band A', 'Band B', 'Band C', 'Band D', 'Band E', 'Band F']
-for i in range(0, len(mass)):
-    ax.scatter(mass[i], efficiency[i], label=labels[i])
+point_fmt = ['o', '^', 'v', '<', '>', 's']
+for i in range(0, len(mass_med)):
+    ax.plot(mass_med[i], efficiency_med[i], f'{point_fmt[i]}:', label=labels[i])
 
 # x-axis
 x_max = 140
