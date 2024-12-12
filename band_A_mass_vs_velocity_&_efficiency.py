@@ -36,45 +36,33 @@ df_E = input_df.loc[input_df['band_type'] == 'band_E']
 df_F = input_df.loc[input_df['band_type'] == 'band_F']
 
 # aggregate the dataframes and collect the data into a plottable form
-band_df = [df_A, df_B, df_C, df_D, df_E, df_F]
-# band_df = [df_A]
-mass = []
-efficiency = []
-velocity = []
-vel_adj = []
+# band_df = [df_A, df_B, df_C, df_D, df_E, df_F]
+band_df = [df_A, df_B]
+band_names = ['Band A', 'Band B', 'Band C', 'Band D', 'Band E', 'Band F']
 
-for df in band_df:
-    df_med = df.groupby('pellet_type').agg(
+for i in range(0, len(band_df)):
+    df_med = band_df[i].groupby('pellet_type').agg(
         mass=pd.NamedAgg(column='mass_gn', aggfunc="median"),
         efficiency=pd.NamedAgg(column='calc_efficiency', aggfunc="median"),
         velocity=pd.NamedAgg(column='velocity_mps', aggfunc="median"),
         vel_adj=pd.NamedAgg(column='vel_adj', aggfunc="median"),
     )    
-    df_med.sort_values(by='mass', inplace=True)    
-    # display(df_med)
+    df_med.sort_values(by='mass', inplace=True) 
     np_med = df_med.to_numpy()
-    mass.append(np_med[:, 0])
-    efficiency.append(np_med[:, 1])
-    velocity.append(np_med[:, 2])
-    vel_adj.append(np_med[:, 3])
+    mass = np_med[:, 0]
+    efficiency = np_med[:, 1]
+    velocity = np_med[:, 2]
+    vel_adj = np_med[:, 3]
 
-# set up the plot
-plt.style.use('bmh')
-fig, ax1 = plt.subplots()
-ax2 = ax1.twinx()
-ax1.set_title('Median Pellet Mass vs. Efficiency vs. Velocity')
+    # set up the plot
+    plt.style.use('bmh')
+    fig, ax1 = plt.subplots()
+    ax2 = ax1.twinx()
+    ax1.set_title(f'{band_names[i]} - Pellet Mass vs. Efficiency & Velocity')
 
-# create each of the band's plots
-labels = ['Band A', 'Band B', 'Band C', 'Band D', 'Band E', 'Band F']
-
-for j in range(0, len(labels)):
-    
-    # efficiency_labels = ['Band A']
-    # point_fmt = ['o', '^', 'v', '<', '>', 's']
-    for i in range(0, len(mass[j])):
-        ax1.plot(mass[j][i], efficiency[j][i], f'o:', label='Efficiency', color='red')
-        ax2.plot(mass[j][i], velocity[j][i], f'^:', label='Velocity', color='green')
-        ax2.plot(mass[j][i], vel_adj[j][i], f'v:', label='Velocity, adjusted', color='blue')
+    ax1.plot(mass, efficiency, f'o:', label='Efficiency', color='red')
+    ax2.plot(mass, velocity, f'^:', label='Velocity', color='green')
+    ax2.plot(mass, vel_adj, f'v:', label='Velocity, adjusted', color='blue')
 
     # x-axis
     x_max = 140
@@ -86,15 +74,21 @@ for j in range(0, len(labels)):
     ax1.set_xlabel('Pellet Mass (grains)')
 
     # y1-axis
-    # y1_max = 1.0
-    # y1_maj_int = 0.1
-    # y1_min_int = 0.02
-    # ax1.set_ylim([0.0, y1_max])
-    # plt.yticks(np.arange(0.0, y1_max+y_min_int, y1_maj_int,))
-    # plt.yticks(np.arange(0.0, y1_max, y1_min_int), minor=True)
+    y1_max = 1.0
+    y1_maj_int = 0.1
+    y1_min_int = 0.02
+    ax1.set_ylim([0.0, y1_max])
+    plt.yticks(np.arange(0.0, y1_max + y1_min_int, y1_maj_int,))
+    plt.yticks(np.arange(0.0, y1_max, y1_min_int), minor=True)
     ax1.set_ylabel('Efficiency')
 
     # y2-axis
+    y2_maj_int = 10
+    y2_max = int(int(np.max(velocity) / 10) * 10)
+    y2_min_int = 1
+    ax2.set_ylim([0.0, y2_max])
+    plt.yticks(np.arange(0.0, y2_max + y2_min_int, y2_maj_int,))
+    plt.yticks(np.arange(0.0, y2_max, y2_min_int), minor=True)    
     ax2.set_ylabel('Velocity (m/s)')
 
     # gridlines
@@ -109,5 +103,7 @@ for j in range(0, len(labels)):
 
     # final plot
     plt.show()
+    # ax1.clear()
+    # ax2.clear()
     # plt.savefig('median_mass_vs_efficiency.svg', format='svg')
     # plt.savefig('median_mass_vs_efficiency.png', format='png')
