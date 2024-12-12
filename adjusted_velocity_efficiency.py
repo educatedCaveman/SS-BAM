@@ -1,3 +1,7 @@
+"""
+this creates plots for my slingshot experiment
+"""
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
@@ -36,8 +40,7 @@ df_E = input_df.loc[input_df['band_type'] == 'band_E']
 df_F = input_df.loc[input_df['band_type'] == 'band_F']
 
 # aggregate the dataframes and collect the data into a plottable form
-# band_df = [df_A, df_B, df_C, df_D, df_E, df_F]
-band_df = [df_A, df_B]
+band_df = [df_A, df_B, df_C, df_D, df_E, df_F]
 band_names = ['Band A', 'Band B', 'Band C', 'Band D', 'Band E', 'Band F']
 
 # for i in range(0, len(band_df)):
@@ -59,7 +62,7 @@ for i, df in enumerate(band_df):
     plt.style.use('bmh')
     fig, ax1 = plt.subplots()
     ax2 = ax1.twinx()
-    ax1.set_title(f'{band_names[i]} - Pellet Mass vs. Efficiency & Velocity')
+    ax1.set_title(f'{band_names[i]} - Adjusted Velocity')
 
     ax1.plot(mass, efficiency, 'o:', label='Efficiency', color='red')
     ax2.plot(mass, velocity, '^:', label='Velocity', color='green')
@@ -93,8 +96,6 @@ for i, df in enumerate(band_df):
     ax2.set_ylabel('Velocity (m/s)')
 
     # gridlines
-    # plt.grid(visible=True, which='major', axis='both')
-    # plt.grid(visible=True, which='minor', axis='both', alpha=0.3)
     plt.grid(visible=False)
 
     # legend
@@ -103,8 +104,8 @@ for i, df in enumerate(band_df):
     ax2.legend(lines1 + lines2, labels1 + labels2, loc='lower right')
 
     # final plot
-    plt.show()
+    # plt.show()
+    plt.savefig(f'charts/{band_names[i]}_adjusted_velocity_efficiency.svg', format='svg')
+    plt.savefig(f'charts/{band_names[i]}_adjusted_velocity_efficiency.png', format='png')
     # ax1.clear()
     # ax2.clear()
-    # plt.savefig('median_mass_vs_efficiency.svg', format='svg')
-    # plt.savefig('median_mass_vs_efficiency.png', format='png')
