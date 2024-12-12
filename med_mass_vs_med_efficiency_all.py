@@ -75,7 +75,7 @@ y_min_int = 0.02
 ax.set_ylim([0.0, y_max])
 plt.yticks(np.arange(0.0, y_max+y_min_int, y_maj_int,))
 plt.yticks(np.arange(0.0, y_max, y_min_int), minor=True)
-ax.set_ylabel('Velocity (m/s)')
+ax.set_ylabel('Efficiency')
 
 # gridlines
 plt.grid(visible=True, which='major', axis='both')
@@ -87,3 +87,4 @@ ax.legend(loc='lower right')
 # final plot
 # plt.show()
 plt.savefig('median_mass_vs_efficiency.svg', format='svg')
+plt.savefig('median_mass_vs_efficiency.png', format='png')

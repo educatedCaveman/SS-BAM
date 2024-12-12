@@ -69,12 +69,13 @@ where `k` is the spring constant, and `x` is the deformation of the spring.  How
 ```math
 F = kx
 ```
+
 ```math
-k = \frac{F}{x}\\
+k = \frac{F}{x}
 ```
 Plugging `k` in to the formula for potential energy, and simplifying yields:
 ```math 
-U(x) = \frac{1}{2}Fx\\
+U(x) = \frac{1}{2}Fx
 ```
 where `F` is measured in Newtons, and `x` is measured in meters.  Because the band was not drawn from x=0, x is actually the *change* in draw length, which yields the final equation:
 ```math 
