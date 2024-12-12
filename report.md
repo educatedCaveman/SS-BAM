@@ -67,7 +67,9 @@ U(x) = \frac{1}{2}kx^2
 ```
 where `k` is the spring constant, and `x` is the deformation of the spring.  However, because `k` is unknown, we can take Hooke's Law, and solve for `k`
 ```math
-F = kx\\
+F = kx
+```
+```math
 k = \frac{F}{x}\\
 ```
 Plugging `k` in to the formula for potential energy, and simplifying yields:
