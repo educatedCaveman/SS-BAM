@@ -84,7 +84,7 @@ for i in range(0, len(band_df)):
 
     # y2-axis
     y2_maj_int = 10
-    y2_max = int(int(np.max(velocity) / 10) * 10)
+    y2_max = int((int(np.max(velocity) / 10) + 1) * 10)
     y2_min_int = 1
     ax2.set_ylim([0.0, y2_max])
     plt.yticks(np.arange(0.0, y2_max + y2_min_int, y2_maj_int,))
