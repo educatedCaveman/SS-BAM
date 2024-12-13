@@ -92,22 +92,29 @@ df_final = df_final.reindex(columns=col_order)
 for i, band_name in enumerate(band_names):
     for j, pellet_type in enumerate(pellet_types):
         tmp_df = df_final.query(f"band_type == '{band_name}' and pellet_type == '{pellet_type}'")
-        col_map = {
-            'stat':             'Statistic',
-            'mass_gn':          'Mass (grains)',
-            'calc_mass_g':      'Mass (g)',
-            'velocity_mps':     'Velocity (m/s)',
-            'calc_momentum':    'Momentum (kg⋅m/s)',
-            'calc_KE':          'Kinetic Energy (J)',
-            'calc_efficiency':  'Efficiency',
-        }
-        tmp_df = tmp_df.rename(columns=col_map)
         
-        # massage the file names
-        base_name = f"{band_name}_{pellet_type}_stats"
-        base_name = base_name.replace('1/2"', '½ inch')
-        base_name = base_name.replace('3/8"', '⅜ inch')
-        base_name = base_name.replace(' ', '_')
-        table_name = slugify(base_name)
-        # print(table_name)
-        table_md = tmp_df.to_markdown(buf=f"tables/{table_name}.md", index=False)
+        # print(f'{band_name}, {pellet_type}: {tmp_df.shape}')
+        
+        # don't create empty tables:
+        if tmp_df.shape[0] == 0:
+            print(f'skipping {band_name}, {pellet_type}')
+        else:            
+            col_map = {
+                'stat':             'Statistic',
+                'mass_gn':          'Mass (grains)',
+                'calc_mass_g':      'Mass (g)',
+                'velocity_mps':     'Velocity (m/s)',
+                'calc_momentum':    'Momentum (kg⋅m/s)',
+                'calc_KE':          'Kinetic Energy (J)',
+                'calc_efficiency':  'Efficiency',
+            }
+            tmp_df = tmp_df.rename(columns=col_map)
+            
+            # massage the file names
+            base_name = f"{band_name}_{pellet_type}_stats"
+            base_name = base_name.replace('1/2"', '½ inch')
+            base_name = base_name.replace('3/8"', '⅜ inch')
+            base_name = base_name.replace(' ', '_')
+            table_name = slugify(base_name)
+            # print(table_name)
+            table_md = tmp_df.to_markdown(buf=f"tables/{table_name}.md", index=False)

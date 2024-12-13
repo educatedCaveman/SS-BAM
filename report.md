@@ -60,12 +60,11 @@ This experiment was conducted indoors, at an ambient temperature of approximatel
 Each shot will consist of the following steps:
 
 1. the projectile will be weighed and recorded in grains.
-2. the projectile will be inserted into the band's pouch while the band is slack
-3. the release aid will be attached around the pouch and projectile
-4. the release aid will be drawn back to the catch opposite the fork
-5. the slingshot will be aimed through the chronograph, into the catch box.
-6. the release aid's trigger will be pulled
-7. the velocity of the projectile will be determined and recorded in m/s.
+2. the projectile will be inserted into the band's pouch
+3. the pouch and pellet will be drawn back to, and placed into the release aid
+4. the slingshot will be aimed through the chronograph, into the catch box.
+5. the release aid's trigger will be pulled
+6. the velocity of the projectile will be determined and recorded in m/s.
 
 ### Calculating Potential Energy
 
@@ -116,10 +115,38 @@ where `m` is the mass of the projectile in kilograms, and `v` is the velocity of
 
 # Results
 
-- What did you discover?
-- Was the tested hypothesis true?
+My data does not support the "you'll waste energy" assertion. If the assertion, and my assumption of what "efficient" means in this context was correct, I would have expected a peak in the mass vs. efficiency graph at specific mass. Specifically, I would have expected the peak to correspond to the mass of the pellet type listed. For reference, the mapping of each band to pellet type/diameter, and approxomate measured mass is shown below.
 
-![test](charts/median_mass_vs_efficiency.svg)
+| Band   | Steel Diameter  | Approxomate mass (grains) |
+| ------ | --------------- | ------------------------- |
+| Band A | 0.25" or 6.5mm  | 14                        |
+| Band B | 0.3125" or 8mm  | 32                        |
+| Band C | n/a (clay)      | 16-17                     |
+| Band D | 0.4375" or 11mm | 83                        |
+| Band E | 0.5" or 12.7mm  | 129                       |
+| Band F | 0.375" or 9.5mm | 55                        |
+
+If the assertion were true, there would be noticable peaks in the following graphs. However, they show the peak efficiency for _all_ bands is at a mass corresponding to 12mm or 0.5in.
+
+![pellet mass vs. velocity, band-by-band](charts/mass_vs_efficiency_all.svg)
+
+![median pellet mass vs. velocity, band-by-band](charts/median_mass_vs_efficiency.svg)
+
+# Discussion
+
+There are several possibilities for why my results differ from expectations.
+
+1. my definition of efficiency differs from Simple-Shot.
+2. one or more of my assumptions is incorrect
+3. experimental design errors
+
+First, lets look at the consistency of my data.
+
+## Data tables
+
+This table contains links to summary tables for each band-pellet combination run. The goal is to indicate how consistent my data is with itself, and to attempt to calculate confidence intervals for the measured statistics. In general, the data is what I would characterize as consistent.
+
+Not all values used or calculated were analyzed. The data not shown are either constants (such as draw length, draw force, etc.), or are values derived solely from constant values (such as power stroke, and potential energy, etc.). This data has 0 spread, which may mislead one to interpret the data as more consistent than it is. All these values are still included in the data file (`SS-BAM - data.csv`). The 5mm pellets were unable to be held by the release aid for Bands D, E, and F, and the 5.5mm pellets for Bands E and F. In some cases, standard deviations and/or confidence intervals are 0.0. This is due to my rounding the values to 3 decimal places.
 
 |        | Band A                                         | Band B                                         | Band C                                         | Band D                                         | Band E                                         | Band F                                         |
 | ------ | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
@@ -132,10 +159,28 @@ where `m` is the mass of the projectile in kilograms, and `v` is the velocity of
 | 8 mm   | [table](tables/band-a-8-mm-steel-stats.md)     | [table](tables/band-b-8-mm-steel-stats.md)     | [table](tables/band-c-8-mm-steel-stats.md)     | [table](tables/band-d-8-mm-steel-stats.md)     | [table](tables/band-e-8-mm-steel-stats.md)     | [table](tables/band-f-8-mm-steel-stats.md)     |
 | 7 mm   | [table](tables/band-a-7-mm-steel-stats.md)     | [table](tables/band-b-7-mm-steel-stats.md)     | [table](tables/band-c-7-mm-steel-stats.md)     | [table](tables/band-d-7-mm-steel-stats.md)     | [table](tables/band-e-7-mm-steel-stats.md)     | [table](tables/band-f-7-mm-steel-stats.md)     |
 | 6 mm   | [table](tables/band-a-6-mm-steel-stats.md)     | [table](tables/band-b-6-mm-steel-stats.md)     | [table](tables/band-c-6-mm-steel-stats.md)     | [table](tables/band-d-6-mm-steel-stats.md)     | [table](tables/band-e-6-mm-steel-stats.md)     | [table](tables/band-f-6-mm-steel-stats.md)     |
-| 5.5 mm | [table](tables/band-a-5-5-mm-steel-stats.md)   | [table](tables/band-b-5-5-mm-steel-stats.md)   | [table](tables/band-c-5-5-mm-steel-stats.md)   | [table](tables/band-d-5-5-mm-steel-stats.md)   | [table](tables/band-e-5-5-mm-steel-stats.md)   | [table](tables/band-f-5-5-mm-steel-stats.md)   |
-| 5 mm   | [table](tables/band-a-5-mm-steel-stats.md)     | [table](tables/band-b-5-mm-steel-stats.md)     | [table](tables/band-c-5-mm-steel-stats.md)     | [table](tables/band-d-5-mm-steel-stats.md)     | [table](tables/band-e-5-mm-steel-stats.md)     | [table](tables/band-f-5-mm-steel-stats.md)     |
+| 5.5 mm | [table](tables/band-a-5-5-mm-steel-stats.md)   | [table](tables/band-b-5-5-mm-steel-stats.md)   | [table](tables/band-c-5-5-mm-steel-stats.md)   | [table](tables/band-d-5-5-mm-steel-stats.md)   | n/a                                            | n/a                                            |
+| 5 mm   | [table](tables/band-a-5-mm-steel-stats.md)     | [table](tables/band-b-5-mm-steel-stats.md)     | [table](tables/band-c-5-mm-steel-stats.md)     | n/a                                            | n/a                                            | n/a                                            |
+| clay   | [table](tables/band-a-clay-stats.md)           | [table](tables/band-b-clay-stats.md)           | [table](tables/band-c-clay-stats.md)           | [table](tables/band-d-clay-stats.md)           | [table](tables/band-e-clay-stats.md)           | [table](tables/band-f-clay-stats.md)           |
+| rubber | [table](tables/band-a-rubber-stats.md)         | [table](tables/band-b-rubber-stats.md)         | [table](tables/band-c-rubber-stats.md)         | [table](tables/band-d-rubber-stats.md)         | [table](tables/band-e-rubber-stats.md)         | [table](tables/band-f-rubber-stats.md)         |
 
-# Discussion
+## Definition of Efficiency
+I defined efficiency as the ratio of kinetic energy to potential energy. However, Simple-Shot does not specify what they mean by efficiency. After reviewing my data, I tried to think of alternate ways of defining efficiency, and one I came up with was to plot the product of velocity and my calculated energy efficiency vs pellet mass along with velocity and efficiency vs mass.
+
+In each of the plots, you can see a soft peak in the adjusted velocity. In the interest of full trasnparency, I do not know if this kind of a plot makes any kind of sense. However, it *does* show increasing peaks for a band which is marketed as for a larger pellet.
+
+### Band A
+![](charts/Band_A_adjusted_velocity_efficiency.svg)
+
+## Incorrect Assumptions
+
+
+## Experimental Design Errors
+
+
+
+
+
 
 - _What do your results mean?_
 - _How does this fit within the field?_
@@ -145,5 +190,3 @@ places for improvement:
 
 - use known accurate measurement devices
 - use a more purpose-built test fixture.
-
-[band A 12 mm](tables/band_A_12%20mm%20steel_stats.md)

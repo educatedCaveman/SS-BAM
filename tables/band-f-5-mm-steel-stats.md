@@ -1,2 +1,0 @@
-| Statistic   | Mass (grains)   | Mass (g)   | Velocity (m/s)   | Momentum (kg⋅m/s)   | Kinetic Energy (J)   | Efficiency   |
-|-------------|-----------------|------------|------------------|---------------------|----------------------|--------------|
