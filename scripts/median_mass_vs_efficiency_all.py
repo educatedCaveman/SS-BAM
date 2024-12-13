@@ -22,7 +22,7 @@ dtypes = {
     'calc_KE':              'float',  #14
     'calc_efficiency':      'float',  #15
 }
-input_df = pd.read_csv('data_with_calcs.csv', dtype=dtypes)
+input_df = pd.read_csv('data/data_with_calcs.csv', dtype=dtypes)
 # display(input_df)
 
 # split into different bands
@@ -86,5 +86,5 @@ ax.legend(loc='lower right')
 
 # final plot
 # plt.show()
-plt.savefig('median_mass_vs_efficiency.svg', format='svg')
-plt.savefig('median_mass_vs_efficiency.png', format='png')
+plt.savefig('charts/median_mass_vs_efficiency.svg', format='svg')
+plt.savefig('charts/median_mass_vs_efficiency.png', format='png')

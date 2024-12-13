@@ -22,7 +22,7 @@ dtypes = {
     'calc_KE':              'float',  #14
     'calc_efficiency':      'float',  #15
 }
-df = pd.read_csv('data_with_calcs.csv', dtype=dtypes)
+df = pd.read_csv('data/data_with_calcs.csv', dtype=dtypes)
 
 unused_cols = [
     'band_type', 'pellet_type', 'trial_num', 'calc_mass_g', 'velocity_mps', 
