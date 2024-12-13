@@ -82,8 +82,9 @@ for i, df in enumerate(band_df):
     Y1_MAJ_INT = 0.1
     Y1_MIN_INT = 0.02
     ax1.set_ylim([0.0, Y1_MAX])
-    plt.yticks(np.arange(0.0, Y1_MAX + Y1_MIN_INT, Y1_MAJ_INT,))
-    plt.yticks(np.arange(0.0, Y1_MAX, Y1_MIN_INT), minor=True)
+    ax1.set_yticks(np.arange(0.0, Y1_MAX + Y1_MIN_INT, Y1_MAJ_INT,))
+    ax1.set_yticks(np.arange(0.0, Y1_MAX, Y1_MIN_INT), minor=True)
+    # ax1.tick_params(axis='y', which='minor', color='red')
     ax1.set_ylabel('Efficiency')
 
     # y2-axis
@@ -91,8 +92,9 @@ for i, df in enumerate(band_df):
     Y2_MAX = int((int(np.max(velocity) / 10) + 1) * 10)
     Y2_MIN_INT = 1
     ax2.set_ylim([0.0, Y2_MAX])
-    plt.yticks(np.arange(0.0, Y2_MAX + Y2_MIN_INT, Y2_MAJ_INT,))
-    plt.yticks(np.arange(0.0, Y2_MAX, Y2_MIN_INT), minor=True)
+    ax2.set_yticks(np.arange(0.0, Y2_MAX + Y2_MIN_INT, Y2_MAJ_INT,))
+    ax2.set_yticks(np.arange(0.0, Y2_MAX, Y2_MIN_INT), minor=True)
+    # ax2.tick_params(axis='y', which='minor', color='tab:cyan')
     ax2.set_ylabel('Velocity (m/s)')
 
     # gridlines

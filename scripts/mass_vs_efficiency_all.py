@@ -50,12 +50,13 @@ for df in band_df:
 # set up the plot
 plt.style.use('bmh')
 fig, ax = plt.subplots()
-ax.set_title('Pellet Mass vs. Velocity')
+ax.set_title('Pellet Mass vs. Efficiency')
 
 # create each of the band's plots
 labels = ['Band A', 'Band B', 'Band C', 'Band D', 'Band E', 'Band F']
+point_fmt = ['o', '^', 'v', '<', '>', 's']
 for i in range(0, len(mass)):
-    ax.scatter(mass[i], efficiency[i], label=labels[i])
+    ax.scatter(mass[i], efficiency[i], label=labels[i], marker=f'{point_fmt[i]}')
 
 # x-axis
 x_max = 140
@@ -73,7 +74,7 @@ y_min_int = 0.02
 ax.set_ylim([0.0, y_max])
 plt.yticks(np.arange(0.0, y_max+y_min_int, y_maj_int,))
 plt.yticks(np.arange(0.0, y_max, y_min_int), minor=True)
-ax.set_ylabel('Velocity (m/s)')
+ax.set_ylabel('Efficiency')
 
 # gridlines
 plt.grid(visible=True, which='major', axis='both')
@@ -83,4 +84,6 @@ plt.grid(visible=True, which='minor', axis='both', alpha=0.3)
 ax.legend(loc='lower right')
 
 # final plot
-plt.show()
+# plt.show()
+plt.savefig(f'charts/mass_vs_efficiency_all.svg', format='svg')
+plt.savefig(f'charts/mass_vs_efficiency_all.png', format='png')
