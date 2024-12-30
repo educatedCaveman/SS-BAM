@@ -93,7 +93,7 @@ U(x) = \frac{1}{2}Fx
 where `F` is measured in Newtons, and `x` is measured in meters. Because the band was not drawn from x=0, x is actually the _change_ in draw length, which yields the final equation:
 
 ```math
-U(x) = \frac{1}{2}F \Delta x\\
+U(x) = \frac{1}{2}F Δ x\\
 ```
 
 ### Calculating Kinetic Energy
