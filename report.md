@@ -101,7 +101,7 @@ U(x) = \frac{1}{2}F\Delta x
 Kinetic energy of the projectile will be calculated using
 
 ```math
-E = \frac{1}{2}mv^2\\
+E = \frac{1}{2}mv^2
 ```
 
 where `m` is the mass of the projectile in kilograms, and `v` is the velocity of the projectile in m/s.
