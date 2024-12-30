@@ -68,13 +68,7 @@ Each shot will consist of the following steps:
 
 ### Calculating Potential Energy
 
-I will consider the slingshot band as an ideal linear spring. The potential energy of such a spring is
-
-```math
-U(x) = \frac{1}{2}kx^2
-```
-
-where `k` is the spring constant, and `x` is the deformation of the spring. However, because `k` is unknown, we can take Hooke's Law, and solve for `k`
+I will consider the slingshot band as an ideal linear spring. The potential energy of such a spring is $U(x) = \frac{1}{2}kx^2$ where `k` is the spring constant, and `x` is the deformation of the spring. However, because `k` is unknown, we can take Hooke's Law, and solve for `k`
 
 ```math
 F = kx
@@ -84,27 +78,11 @@ F = kx
 k = \frac{F}{x}
 ```
 
-Plugging `k` in to the formula for potential energy, and simplifying yields:
-
-```math
-U(x) = \frac{1}{2}Fx
-```
-
-where `F` is measured in Newtons, and `x` is measured in meters. Because the band was not drawn from x=0, x is actually the _change_ in draw length, which yields the final equation:
-
-```math
-U(x) = \frac{1}{2}F\Delta x
-```
+Plugging `k` in to the formula for potential energy, and simplifying yields: $U(x) = \frac{1}{2}Fx$ where `F` is measured in Newtons, and `x` is measured in meters. Because the band was not drawn from `x=0`, `x` is actually the _change_ in draw length, which yields the final equation $U(x) = \frac{1}{2}F\Delta x$ 
 
 ### Calculating Kinetic Energy
 
-Kinetic energy of the projectile will be calculated using
-
-```math
-E = \frac{1}{2}mv^2
-```
-
-where `m` is the mass of the projectile in kilograms, and `v` is the velocity of the projectile in m/s.
+Kinetic energy of the projectile will be calculated using $E = \frac{1}{2}mv^2$ where `m` is the mass of the projectile in kilograms, and `v` is the velocity of the projectile in m/s.
 
 ### Assumptions
 
