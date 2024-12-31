@@ -40,12 +40,26 @@ df_E = input_df.loc[input_df['band_type'] == 'band_E']
 df_F = input_df.loc[input_df['band_type'] == 'band_F']
 
 # aggregate the dataframes and collect the data into a plottable form
-band_df = [df_A, df_B, df_C, df_D, df_E, df_F]
-band_names = ['Band A', 'Band B', 'Band C', 'Band D', 'Band E', 'Band F']
+band_map = {
+    'A': {'df': df_A, 'row': 0, 'col': 0, 'name': 'Band A', 'fn': 'band_a'},
+    'B': {'df': df_B, 'row': 0, 'col': 1, 'name': 'Band B', 'fn': 'band_b'},
+    'C': {'df': df_C, 'row': 1, 'col': 0, 'name': 'Band C', 'fn': 'band_c'},
+    'D': {'df': df_D, 'row': 1, 'col': 1, 'name': 'Band D', 'fn': 'band_d'},
+    'E': {'df': df_E, 'row': 2, 'col': 0, 'name': 'Band E', 'fn': 'band_e'},
+    'F': {'df': df_F, 'row': 2, 'col': 1, 'name': 'Band F', 'fn': 'band_f'},
+}
 
-# for i in range(0, len(band_df)):
-for i, df in enumerate(band_df):
-    df_med = df.groupby('pellet_type').agg(
+plt.style.use('bmh')
+fig, ax = plt.subplots(3, 2)
+
+for i, band in enumerate(band_map):
+    band_df = band_map[band]['df']
+    row = band_map[band]['row']
+    col = band_map[band]['col']
+    name_h = band_map[band]['name']
+    name_f = band_map[band]['fn']
+
+    df_med = band_df.groupby('pellet_type').agg(
         mass=pd.NamedAgg(column='mass_gn', aggfunc="median"),
         efficiency=pd.NamedAgg(column='calc_efficiency', aggfunc="median"),
         velocity=pd.NamedAgg(column='velocity_mps', aggfunc="median"),
@@ -58,11 +72,9 @@ for i, df in enumerate(band_df):
     velocity = np_med[:, 2]
     vel_adj = np_med[:, 3]
 
-    # set up the plot
-    plt.style.use('bmh')
-    fig, ax1 = plt.subplots()
+    ax1 = ax[row, col]
     ax2 = ax1.twinx()
-    ax1.set_title(f'{band_names[i]} - Adjusted Velocity')
+    ax1.set_title(f'{name_h} - Adjusted Velocity')
 
     ax1.plot(mass, efficiency, 'o:', label='Efficiency', color='red')
     ax2.plot(mass, velocity, '^:', label='Velocity', color='green')
@@ -105,9 +117,6 @@ for i, df in enumerate(band_df):
     lines2, labels2 = ax2.get_legend_handles_labels()
     ax2.legend(lines1 + lines2, labels1 + labels2, loc='lower right')
 
-    # final plot
-    # plt.show()
-    plt.savefig(f'charts/{band_names[i].replace(' ', '_')}_adjusted_velocity_efficiency.svg', format='svg')
-    plt.savefig(f'charts/{band_names[i].replace(' ', '_')}_adjusted_velocity_efficiency.png', format='png')
-    # ax1.clear()
-    # ax2.clear()
+# plt.show()
+plt.savefig(f'charts/band_A-F_adjusted_velocity_efficiency.svg', format='svg')
+plt.savefig(f'charts/band_A-F_adjusted_velocity_efficiency.png', format='png')

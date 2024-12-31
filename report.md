@@ -51,8 +51,6 @@ The slingshot was constructed using a Simple-Shot Hammer XT slingshot head, a wo
 
 The slingshot will shoot through the chronograph, which is placed just in front of the slingshot. After passing through the chronograph, the projectile will enter the catch box.
 
-TODO: insert images
-
 ## Methods
 
 This experiment was conducted indoors, at an ambient temperature of approximately 21°C. Each band will be attached to the fork using its maximum available length. The draw length will be measured as the distance from the front of the fork to the center of the projectile, and will be fixed at 0.8 m. The draw force of each band will be measured in kilogram-force, and converted to Newtons for calculations. For each band, the slack-length of the band will be recorded. For each band, each projectile type will be shot N times.
@@ -78,7 +76,7 @@ F = kx
 k = \frac{F}{x}
 ```
 
-Plugging `k` in to the formula for potential energy, and simplifying yields: $U(x) = \frac{1}{2}Fx$ where `F` is measured in Newtons, and `x` is measured in meters. Because the band was not drawn from `x=0`, `x` is actually the _change_ in draw length, which yields the final equation $U(x) = \frac{1}{2}F\Delta x$ 
+Plugging `k` in to the formula for potential energy, and simplifying yields: $U(x) = \frac{1}{2}Fx$ where `F` is measured in Newtons, and `x` is measured in meters. Because the band was not drawn from `x=0`, `x` is actually the _change_ in draw length, which yields the final equation $U(x) = \frac{1}{2}F\Delta x$
 
 ### Calculating Kinetic Energy
 
@@ -86,10 +84,11 @@ Kinetic energy of the projectile will be calculated using $E = \frac{1}{2}mv^2$ 
 
 ### Assumptions
 
-- the draw-weight of each band will not change between shots
-- the slack length of each band will not change between shots
-- the final draw length of each shot will not change between shots
-- the effect of air resistance is ignored
+1. the draw-weight of each band will not change between shots
+2. the slack length of each band will not change between shots
+3. the final draw length of each shot will not change between shots
+4. the effect of air resistance is ignored
+5. each band acts as an ideal spring, having a linear stress-strain curve
 
 # Results
 
@@ -114,7 +113,7 @@ If the assertion were true, there would be noticable peaks in the following grap
 
 There are several possibilities for why my results differ from expectations.
 
-1. my definition of efficiency differs from Simple-Shot.
+1. my definition of efficiency differs from Simple-Shot's.
 2. one or more of my assumptions is incorrect
 3. experimental design errors
 
@@ -143,28 +142,62 @@ Not all values used or calculated were analyzed. The data not shown are either c
 | rubber | [table](tables/band-a-rubber-stats.md)         | [table](tables/band-b-rubber-stats.md)         | [table](tables/band-c-rubber-stats.md)         | [table](tables/band-d-rubber-stats.md)         | [table](tables/band-e-rubber-stats.md)         | [table](tables/band-f-rubber-stats.md)         |
 
 ## Definition of Efficiency
-I defined efficiency as the ratio of kinetic energy to potential energy. However, Simple-Shot does not specify what they mean by efficiency. After reviewing my data, I tried to think of alternate ways of defining efficiency, and one I came up with was to plot the product of velocity and my calculated energy efficiency vs pellet mass along with velocity and efficiency vs mass.
 
-In each of the plots, you can see a soft peak in the adjusted velocity. In the interest of full trasnparency, I do not know if this kind of a plot makes any kind of sense. However, it *does* show increasing peaks for a band which is marketed as for a larger pellet.
+I defined efficiency as the ratio of kinetic energy to potential energy. However, Simple-Shot does not specify what they mean by efficiency. After reviewing my data, I thought of alternate ways of defining efficiency, and one is to plot the product of velocity and calculated energy efficiency (Adjusted Velocity) vs pellet mass, along with the original velocity and efficiency vs mass.
 
-### Band A
 ![](charts/Band_A_adjusted_velocity_efficiency.svg)
+
+In the plot, you can see a soft peak in the adjusted velocity. I do not know if this meaningful, however, it _does_ show increasing peaks for a band which is marketed as for a larger pellet. However, these peaks do not match Simple-Shot's recommendation. Plots for the remaining band are linked below, but the "peak" isn't visible because I capped the pellet mass to ~130 grains.
+
+remaining charts: [Band A](charts/Band_A_adjusted_velocity_efficiency.svg), [Band B](charts/Band_B_adjusted_velocity_efficiency.svg), [Band C](charts/Band_C_adjusted_velocity_efficiency.svg), [Band D](charts/Band_D_adjusted_velocity_efficiency.svg), [Band E](charts/Band_E_adjusted_velocity_efficiency.svg), [Band F](charts/Band_F_adjusted_velocity_efficiency.svg)
 
 ## Incorrect Assumptions
 
+I made some [assumptions](#assumptions), which I will examine in more detail.
+
+### Assumption #1
+
+> the draw-weight of each band will not change between shots
+
+It is possible the band force changed between shots, either due to the relatively rapid shooting, or some kind of "break-in" process. I do not think this is the case. If it were, I would have expected a time-based trend in the measured velocities. Alternatively, if the band force wasn't constant, it was too minor to be measured with my instruments.
+
+### Assumption #2
+
+> the slack length of each band will not change between shots
+
+It is possible the band's slack length changed. However, like with assumption #1, if there was some effect not accounted for, I would have expected a time-based trend in the measured velocities, which I did not see. Just like Assumption #1, it is possible such an effect was present, but if it was, again, it was too minor to be measured.
+
+### Assumption #3
+
+> the final draw length of each shot will not change between shots
+
+I do not think this assumption is incorrect. While there is undoubtedly some deformation in the test fixture, I do not think the forces involved are enough to significantly bend or deform the PLA, wood, steel, or aluminum used in it. 
+
+### Assumption #4
+
+> the effect of air resistance is ignored
+
+Obviously this assumption is not correct, but it is a common assumption made for the sake of simplicity. While incorrect, this assumption is likely not an issue, and I suspect at the low velocities I've measured, it would not be significant.
+
+### Assumption #5
+
+> each band acts as an ideal spring, having a linear stress-strain curve
+
+for calculating the potential energy of the slingshot, while I measured the draw force at full draw, I did not measure it at other draw distances. However, the calculated potential energy and the actual stress-strain curve arent changing shot to shot (assumptions 1-3), so while my data may have an error factor to it, it should be consistent for a single band.
+
+It is also possible the draw and slack lengths used are somehow non-ideal and are masking  
 
 ## Experimental Design Errors
 
+I did my best to ensure data consistency with the instruments and materials available to me within my budget and skill level. Despite this, as a team of 1, it is entirely possible I've designed my experiments with fundamental flaws I'm unaware of, or do not understand.
 
+# Conclusion
 
+I started this experiment out of curiousity, anticipating I might confirm Simple-Shot's assertion that band and ammunition should be matched.  My results do not support their claims, but it also does not suggest an alternate ideal matching. Generally speaking, I found that for a single band, the heaviest pellets yeilded the most efficient energy transfer, and for a single pellet size, the lightest band was the most efficient.
 
+## Places for Improvement:
 
-
-- _What do your results mean?_
-- _How does this fit within the field?_
-- *What are the future* *prospectives\_\_?*
-
-places for improvement:
-
-- use known accurate measurement devices
-- use a more purpose-built test fixture.
+1. use known accurate measurement devices
+2. use a more purpose-built test fixture
+    - incorporate a load cell for measuring the stress-strain curve
+3. use data-collection software to remove manual data entry
